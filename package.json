@@ -1,0 +1,43 @@
+{
+  "author": {
+    "name": "Marshall Chan",
+    "email": "yahoohung@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/yahoohung/loopback-graphql-server/issues"
+  },
+  "bundleDependencies": [],
+  "dependencies": {
+    "async": "^2.5.0",
+    "body-parser": "^1.18.0",
+    "event-stream": "^3.3.4",
+    "graphql": "^0.11.3",
+    "graphql-date": "^1.0.3",
+    "graphql-relay": "^0.5.2",
+    "graphql-server-express": "^1.1.2",
+    "graphql-type-json": "^0.1.4",
+    "lodash": "^4.17.4",
+    "promisify-node": "^0.4.0",
+    "subscriptions-transport-ws": "^0.8.3",
+    "underscore": "^1.8.3"
+  },
+  "deprecated": false,
+  "description": "Add Relay based Apollo Server or GraphQL queries on your Loopback server",
+  "devDependencies": {},
+  "homepage": "https://github.com/yahoohung/loopback-graphql-server#readme",
+  "keywords": [
+    "Loopback",
+    "GraphQL",
+    "Apollo",
+    "Express",
+    "Javascript",
+    "REST",
+    "APIs"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "name": "loopback-graphql-server",
+  "optionalDependencies": {},
+  "scripts": {},
+  "version": "1.0.0"
+}

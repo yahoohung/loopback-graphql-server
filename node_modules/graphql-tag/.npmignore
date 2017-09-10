@@ -1,0 +1,6 @@
+.gitignore
+.babelrc
+.travis.yml
+test.js
+CHANGELOG.md
+rollup.config.js
