@@ -1,6 +1,6 @@
 # Relay GraphQL Server for Loopback
 
-Combine the powers of Relay GraphQL with the backend of Loopback to automatically generate GraphQL endpoints based on Loopback Schema. 
+Combine the powers of GraphQL with the backend of Loopback to automatically generate GraphQL endpoints based on Loopback Schema. 
 
 ## Installation
 
