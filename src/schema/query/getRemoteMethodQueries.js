@@ -54,8 +54,8 @@ module.exports = function getRemoteMethodQueries(model, options) {
                                 options: options
                             })
                             .then(() => {
+                                let ctxOptions = { accessToken: context.req.accessToken }                                
                                 let wrap = promisify(model[method.name](params, ctxOptions));
-                                let ctxOptions = { accessToken: context.req.accessToken }
 
                                 if (typeObj.list) {
                                     return connectionFromPromisedArray(wrap, args, model);
