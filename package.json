@@ -39,7 +39,7 @@
     "name": "loopback-graphql-server",
     "optionalDependencies": {},
     "scripts": {},
-    "version": "1.0.4",
+    "version": "1.0.5",
     "repository": {
         "type": "git",
         "url": "https://github.com/yahoohung/loopback-graphql-server.git"
