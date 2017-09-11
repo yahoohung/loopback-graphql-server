@@ -46,17 +46,18 @@ module.exports = function getRemoteMethodMutations(model) {
                         },
                     },
                     mutateAndGetPayload: (args, context) => {
-                        let params = [];
-
+                        let params = {};
                         _.forEach(acceptingParams, (param, name) => {
-                            if (args[name]) params.push(args[name]);
+                            if (args[name] && Object.keys(args[name]).length > 0){
+                                params = _.merge(params, args[name])                
+                            }   
                         });
                         var modelId = args && args.id;
                         return checkAccess({ accessToken: context.req.accessToken, model: model, method: method, id: modelId })
                             .then(() => {
 
                                 let ctxOptions = { accessToken: context.req.accessToken }
-                                let wrap = promisify(model[method.name](params, ctxOptions));
+                                let wrap = promisify(model[method.name](...[params], ctxOptions));
 
                                 if (typeObj.list) {
                                     return connectionFromPromisedArray(wrap, args, model);
