@@ -50,14 +50,12 @@ module.exports = function getRemoteMethodQueries(model, options) {
                                 let params = {};
 
                                 _.forEach(acceptingParams, (param, name) => {
-                                    if (args[name] && Object.keys(args[name]).length > 0){
-                                        params = _.merge(params, typeof args[name] === 'string' ? {0: args[name]}:args[name])                
-                                    }   
+                                    if (args[name] && Object.keys(args[name]).length > 0) {
+                                        params = _.merge(params, typeof args[name] === 'string' ? { 0: args[name] } : args[name])
+                                    }
                                 });
 
-                                console.log(params)
-
-                                let ctxOptions = { accessToken: context.req.accessToken }                           
+                                let ctxOptions = { accessToken: context.req.accessToken }
                                 let wrap = promisify(model[method.name](...[params], ctxOptions));
 
                                 if (typeObj.list) {
