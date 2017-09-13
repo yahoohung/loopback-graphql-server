@@ -8,7 +8,7 @@ const getTypes = require('../types');
 
 function getSchema(models, options) {
 
-    getTypes(models);
+    const types = getTypes(models);
 
     const items = {
         query: getQuery(models, options),

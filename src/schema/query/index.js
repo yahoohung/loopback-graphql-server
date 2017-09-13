@@ -1,7 +1,6 @@
 'use strict';
 
 const _ = require('lodash');
-
 const { GraphQLObjectType } = require('graphql');
 const { getType } = require('../../types/type');
 const getRemoteMethodQueries = require('./getRemoteMethodQueries');
@@ -40,8 +39,6 @@ function generateModelFields(models, options) {
                 };
             }
         }
-
-
     });
 
     return modelFields;

@@ -10,9 +10,13 @@ const fs = require('fs');
 const startSubscriptionServer = require('./subscriptions');
 
 module.exports = function(app, options) {
-    const models = app.models();
+    let models = [];
+    app.models().forEach(function(element) {
+        if (element.shared) models.push(element)
+    });
 
     if (models.length >= 1) {
+
         const schema = getSchema(models, options);
 
         fs.writeFileSync(

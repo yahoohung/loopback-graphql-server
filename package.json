@@ -9,7 +9,7 @@
     "bundleDependencies": [],
     "dependencies": {
         "async": "^2.5.0",
-        "body-parser": "^1.18.0",
+        "body-parser": "^1.18.1",
         "event-stream": "^3.3.4",
         "graphql": "^0.11.3",
         "graphql-date": "^1.0.3",
@@ -39,7 +39,7 @@
     "name": "loopback-graphql-server",
     "optionalDependencies": {},
     "scripts": {},
-    "version": "1.0.6",
+    "version": "1.1.0",
     "repository": {
         "type": "git",
         "url": "https://github.com/yahoohung/loopback-graphql-server.git"

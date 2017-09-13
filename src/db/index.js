@@ -135,10 +135,6 @@ function findRelatedMany(rel, obj, args, context) {
         return findAllViaThrough(rel, obj, args, context);
     }
 
-    args.where = {
-        [rel.keyTo]: obj[rel.keyFrom],
-    };
-
     return findAll(rel.modelTo, obj, args, context);
 }
 

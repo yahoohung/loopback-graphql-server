@@ -1,0 +1,554 @@
+type brand implements Node {
+  # The ID of an object
+  id: ID!
+  name: String!
+  products(filter: JSON, after: String, first: Int, before: String, last: Int): productConnection
+}
+
+# A connection to a list of items.
+type brandConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [brandEdge]
+
+  # Total number of items
+  totalCount: Int
+}
+
+input brandCreateInput {
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type brandCreatePayload {
+  obj: brand
+  clientMutationId: String
+}
+
+input brandDeleteByIdInput {
+  id: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type brandDeleteByIdPayload {
+  obj: JSON
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type brandEdge {
+  # The item at the end of the edge
+  node: brand
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input brandPatchOrCreateInput {
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type brandPatchOrCreatePayload {
+  obj: brand
+  clientMutationId: String
+}
+
+# brand
+type brandQueries {
+  # Check whether a model instance exists in the data source.
+  brandExists(id: JSON, options: JSON): Boolean
+
+  # Find a model instance by {{id}} from the data source.
+  brandFindById(id: JSON, filter: JSON, options: JSON): brand
+
+  # Find all instances of the model matched by filter from the data source.
+  brandFind(filter: JSON, options: JSON, after: String, first: Int, before: String, last: Int): brandConnection
+
+  # Find first instance of the model matched by filter from the data source.
+  brandFindOne(filter: JSON, options: JSON): brand
+
+  # Count instances of the model matched by where from the data source.
+  brandCount(where: JSON, options: JSON): Int
+}
+
+input brandReplaceByIdInput {
+  id: JSON
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type brandReplaceByIdPayload {
+  obj: brand
+  clientMutationId: String
+}
+
+input brandReplaceOrCreateInput {
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type brandReplaceOrCreatePayload {
+  obj: brand
+  clientMutationId: String
+}
+
+input brandUpdateAllInput {
+  where: JSON
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type brandUpdateAllPayload {
+  obj: JSON
+  clientMutationId: String
+}
+
+input brandUpsertWithWhereInput {
+  where: JSON
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type brandUpsertWithWherePayload {
+  obj: brand
+  clientMutationId: String
+}
+
+scalar DateTime
+
+# The `JSON` scalar type represents JSON values as specified by [ECMA-404](http://www.ecma-international.org/publications/files/ECMA-ST/ECMA-404.pdf).
+scalar JSON
+
+type Mutation {
+  # Create a new instance of the model and persist it into the data source.
+  productCreate(input: productCreateInput!): productCreatePayload
+
+  # Patch an existing model instance or insert a new one into the data source.
+  productPatchOrCreate(input: productPatchOrCreateInput!): productPatchOrCreatePayload
+
+  # Replace an existing model instance or insert a new one into the data source.
+  productReplaceOrCreate(input: productReplaceOrCreateInput!): productReplaceOrCreatePayload
+
+  # Update an existing model instance or insert a new one into the data source based on the where criteria.
+  productUpsertWithWhere(input: productUpsertWithWhereInput!): productUpsertWithWherePayload
+
+  # Replace attributes for a model instance and persist it into the data source.
+  productReplaceById(input: productReplaceByIdInput!): productReplaceByIdPayload
+
+  # Update instances of the model matched by {{where}} from the data source.
+  productUpdateAll(input: productUpdateAllInput!): productUpdateAllPayload
+
+  # Delete a model instance by {{id}} from the data source.
+  productDeleteById(input: productDeleteByIdInput!): productDeleteByIdPayload
+
+  # Create a new instance of the model and persist it into the data source.
+  brandCreate(input: brandCreateInput!): brandCreatePayload
+
+  # Patch an existing model instance or insert a new one into the data source.
+  brandPatchOrCreate(input: brandPatchOrCreateInput!): brandPatchOrCreatePayload
+
+  # Replace an existing model instance or insert a new one into the data source.
+  brandReplaceOrCreate(input: brandReplaceOrCreateInput!): brandReplaceOrCreatePayload
+
+  # Update an existing model instance or insert a new one into the data source based on the where criteria.
+  brandUpsertWithWhere(input: brandUpsertWithWhereInput!): brandUpsertWithWherePayload
+
+  # Replace attributes for a model instance and persist it into the data source.
+  brandReplaceById(input: brandReplaceByIdInput!): brandReplaceByIdPayload
+
+  # Update instances of the model matched by {{where}} from the data source.
+  brandUpdateAll(input: brandUpdateAllInput!): brandUpdateAllPayload
+
+  # Delete a model instance by {{id}} from the data source.
+  brandDeleteById(input: brandDeleteByIdInput!): brandDeleteByIdPayload
+
+  # Create a new instance of the model and persist it into the data source.
+  userCreate(input: userCreateInput!): userCreatePayload
+
+  # Patch an existing model instance or insert a new one into the data source.
+  userPatchOrCreate(input: userPatchOrCreateInput!): userPatchOrCreatePayload
+
+  # Replace an existing model instance or insert a new one into the data source.
+  userReplaceOrCreate(input: userReplaceOrCreateInput!): userReplaceOrCreatePayload
+
+  # Update an existing model instance or insert a new one into the data source based on the where criteria.
+  userUpsertWithWhere(input: userUpsertWithWhereInput!): userUpsertWithWherePayload
+
+  # Replace attributes for a model instance and persist it into the data source.
+  userReplaceById(input: userReplaceByIdInput!): userReplaceByIdPayload
+
+  # Update instances of the model matched by {{where}} from the data source.
+  userUpdateAll(input: userUpdateAllInput!): userUpdateAllPayload
+
+  # Delete a model instance by {{id}} from the data source.
+  userDeleteById(input: userDeleteByIdInput!): userDeleteByIdPayload
+
+  # Login a user with username/email and password.
+  userLogin(input: userLoginInput!): userLoginPayload
+
+  # Logout a user with access token.
+  userLogout(input: userLogoutInput!): userLogoutPayload
+
+  # Reset password for a user with email.
+  userResetPassword(input: userResetPasswordInput!): userResetPasswordPayload
+
+  # Change a user's password.
+  userChangePassword(input: userChangePasswordInput!): userChangePasswordPayload
+
+  # Reset user's password via a password-reset token.
+  userSetPassword(input: userSetPasswordInput!): userSetPasswordPayload
+}
+
+# An object with an ID
+interface Node {
+  # The id of the object.
+  id: ID!
+}
+
+# Information about pagination in a connection.
+type PageInfo {
+  # When paginating forwards, are there more items?
+  hasNextPage: Boolean!
+
+  # When paginating backwards, are there more items?
+  hasPreviousPage: Boolean!
+
+  # When paginating backwards, the cursor to continue.
+  startCursor: String
+
+  # When paginating forwards, the cursor to continue.
+  endCursor: String
+}
+
+type product implements Node {
+  # The ID of an object
+  id: ID!
+  name: String!
+  price: Float
+  create_at: DateTime!
+  brandId: Float
+  brand(filter: JSON, after: String, first: Int, before: String, last: Int): brand
+}
+
+# A connection to a list of items.
+type productConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [productEdge]
+
+  # Total number of items
+  totalCount: Int
+}
+
+input productCreateInput {
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type productCreatePayload {
+  obj: product
+  clientMutationId: String
+}
+
+input productDeleteByIdInput {
+  id: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type productDeleteByIdPayload {
+  obj: JSON
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type productEdge {
+  # The item at the end of the edge
+  node: product
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input productPatchOrCreateInput {
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type productPatchOrCreatePayload {
+  obj: product
+  clientMutationId: String
+}
+
+# product
+type productQueries {
+  # Check whether a model instance exists in the data source.
+  productExists(id: JSON, options: JSON): Boolean
+
+  # Find a model instance by {{id}} from the data source.
+  productFindById(id: JSON, filter: JSON, options: JSON): product
+
+  # Find all instances of the model matched by filter from the data source.
+  productFind(filter: JSON, options: JSON, after: String, first: Int, before: String, last: Int): productConnection
+
+  # Find first instance of the model matched by filter from the data source.
+  productFindOne(filter: JSON, options: JSON): product
+
+  # Count instances of the model matched by where from the data source.
+  productCount(where: JSON, options: JSON): Int
+}
+
+input productReplaceByIdInput {
+  id: JSON
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type productReplaceByIdPayload {
+  obj: product
+  clientMutationId: String
+}
+
+input productReplaceOrCreateInput {
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type productReplaceOrCreatePayload {
+  obj: product
+  clientMutationId: String
+}
+
+input productUpdateAllInput {
+  where: JSON
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type productUpdateAllPayload {
+  obj: JSON
+  clientMutationId: String
+}
+
+input productUpsertWithWhereInput {
+  where: JSON
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type productUpsertWithWherePayload {
+  obj: product
+  clientMutationId: String
+}
+
+type Query {
+  product: productQueries
+  brand: brandQueries
+  user: userQueries
+}
+
+type user implements Node {
+  realm: String
+  username: String
+  email: String!
+  emailVerified: Boolean
+
+  # The ID of an object
+  id: ID!
+}
+
+input userChangePasswordInput {
+  id: JSON
+  oldPassword: String
+  newPassword: String
+  options: JSON
+  clientMutationId: String
+}
+
+type userChangePasswordPayload {
+  obj: JSON
+  clientMutationId: String
+}
+
+# A connection to a list of items.
+type userConnection {
+  # Information to aid in pagination.
+  pageInfo: PageInfo!
+
+  # A list of edges.
+  edges: [userEdge]
+
+  # Total number of items
+  totalCount: Int
+}
+
+input userCreateInput {
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type userCreatePayload {
+  obj: user
+  clientMutationId: String
+}
+
+input userDeleteByIdInput {
+  id: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type userDeleteByIdPayload {
+  obj: JSON
+  clientMutationId: String
+}
+
+# An edge in a connection.
+type userEdge {
+  # The item at the end of the edge
+  node: user
+
+  # A cursor for use in pagination
+  cursor: String!
+}
+
+input userLoginInput {
+  credentials: JSON
+  include: JSON
+  clientMutationId: String
+}
+
+type userLoginPayload {
+  obj: JSON
+  clientMutationId: String
+}
+
+input userLogoutInput {
+  access_token: String
+  clientMutationId: String
+}
+
+type userLogoutPayload {
+  obj: JSON
+  clientMutationId: String
+}
+
+input userPatchOrCreateInput {
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type userPatchOrCreatePayload {
+  obj: user
+  clientMutationId: String
+}
+
+# user
+type userQueries {
+  # Check whether a model instance exists in the data source.
+  userExists(id: JSON, options: JSON): Boolean
+
+  # Find a model instance by {{id}} from the data source.
+  userFindById(id: JSON, filter: JSON, options: JSON): user
+
+  # Find all instances of the model matched by filter from the data source.
+  userFind(filter: JSON, options: JSON, after: String, first: Int, before: String, last: Int): userConnection
+
+  # Find first instance of the model matched by filter from the data source.
+  userFindOne(filter: JSON, options: JSON): user
+
+  # Count instances of the model matched by where from the data source.
+  userCount(where: JSON, options: JSON): Int
+
+  # Confirm a user registration with identity verification token.
+  userConfirm(uid: String, token: String, redirect: String): JSON
+}
+
+input userReplaceByIdInput {
+  id: JSON
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type userReplaceByIdPayload {
+  obj: user
+  clientMutationId: String
+}
+
+input userReplaceOrCreateInput {
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type userReplaceOrCreatePayload {
+  obj: user
+  clientMutationId: String
+}
+
+input userResetPasswordInput {
+  options: JSON
+  clientMutationId: String
+}
+
+type userResetPasswordPayload {
+  obj: JSON
+  clientMutationId: String
+}
+
+input userSetPasswordInput {
+  id: JSON
+  newPassword: String
+  options: JSON
+  clientMutationId: String
+}
+
+type userSetPasswordPayload {
+  obj: JSON
+  clientMutationId: String
+}
+
+input userUpdateAllInput {
+  where: JSON
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type userUpdateAllPayload {
+  obj: JSON
+  clientMutationId: String
+}
+
+input userUpsertWithWhereInput {
+  where: JSON
+  data: JSON
+  options: JSON
+  clientMutationId: String
+}
+
+type userUpsertWithWherePayload {
+  obj: user
+  clientMutationId: String
+}

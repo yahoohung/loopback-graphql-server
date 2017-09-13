@@ -29,7 +29,7 @@ module.exports = function getRemoteMethodQueries(model, options) {
                 const typeObj = utils.getRemoteMethodOutput(method);
                 const acceptingParams = utils.getRemoteMethodInput(method, typeObj.list);
                 const hookName = utils.getRemoteMethodQueryName(model, method);
-
+                // console.log(hookName, acceptingParams)
                 hooks[hookName] = {
                     name: hookName,
                     description: method.description,
@@ -59,6 +59,7 @@ module.exports = function getRemoteMethodQueries(model, options) {
                                     }
                                 });
 
+                                console.log(hookName, method.name, args, acceptingParams)
                                 let ctxOptions = { accessToken: context.req.accessToken }
                                 let wrap = promisify(model[method.name](...params, ctxOptions));
 

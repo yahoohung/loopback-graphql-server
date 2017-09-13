@@ -11,8 +11,8 @@ const {
 } = require('graphql');
 
 const { connectionDefinitions } = require('graphql-relay');
-
 const CustomGraphQLDateType = require('./Date');
+const GeoPointType = require('./GeoPoint/GeoPointType.js');
 const GraphQLJSON = require('graphql-type-json');
 
 const { getTypeDef } = require('./generateTypeDefs');
@@ -49,8 +49,8 @@ const getScalar = (name) => {
             // case 'File':
             //   return FileType;
 
-            // case 'GeoPoint':
-            //   return GeoPointType;
+        case 'GeoPoint':
+            return GeoPointType;
 
         case 'Json':
         case 'JSON':
