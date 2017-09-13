@@ -1,4 +1,4 @@
-# Relay GraphQL Server for Loopback
+# GraphQL Server for Loopback
 
 Combine the powers of GraphQL with the backend of Loopback to automatically generate GraphQL endpoints based on Loopback Schema. 
 
@@ -30,21 +30,24 @@ Graphiql is available on `graphiqlPath` path. (Default: `/graphiql`);
 
 GraphQL subscription Server can be customised by passing `subscriptionServer` configuration. More information can be found at (https://github.com/apollographql/subscriptions-transport-ws#subscriptionserver) or (https://facebook.github.io/relay/docs/subscriptions.html)
 
+## Starter
+(https://github.com/yahoohung/loopback-graphql-starter)
+
 ## ACL and role mapping
 - Auto on/off access control 
 - Enable loopback based ACL configuration
 
-### Access token
+## Access token
 - Accepts AccessToken for authenticated API calls
 - Get access token in operation hooks
 
 ## Queries
-- Relay Specification: `node` query to fetch single entity by ID
+- `node` query to fetch single entity by ID
 - Filter support for `where` with operators(https://loopback.io/doc/en/lb3/Where-filter.html) and `order` filters on queries
 - Support for relations and querying related data
-- Relay Connections support for listed data
+- Graphql Connections support for listed data
 - Data pagination support by using navtive loopback function (`limit`, `offset`)
-- Relay Pagination (`first`, `last`, `before`, `after`)
+- Graphql Pagination (`first`, `last`, `before`, `after`)
 - Remote methods integration
 - Display total count number 
 - Allow to select single level or nested schema
