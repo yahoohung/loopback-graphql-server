@@ -7,6 +7,7 @@ const {
 const GeoPointTypeDefs = require('./GeoPoint');
 const { findRelatedOne, findRelatedMany } = require('../db');
 const { connectionFromPromisedArray } = require('../db/resolveConnection');
+const checkAccess = require('../schema/ACLs');
 
 /** * Loopback Types - GraphQL types
         any - JSON
@@ -195,26 +196,47 @@ function mapRelation(rel, modelName, relName) {
             type: rel.modelTo.modelName,
             args: acceptingParams,
         },
-        resolve: (obj, args, context) => {
-            if (isManyRelation(rel.type) === true) {
+        resolve: (obj, args, context, info) => {
 
-                let params = [];
+            const ctxOptions = { accessToken: context.req.accessToken }
+            const modelId = args && args.id;
+
+            const method = rel.modelTo.sharedClass.findMethodByName('find');
+
+            return checkAccess({
+                accessToken: context.req.accessToken,
+                model: rel.modelTo,
+                method: method,
+                id: modelId,
+                ctx: context,
+                options: []
+            }).then(() => {
+                let params = {};
+
                 _.forEach(acceptingParams, (param, name) => {
-                    if (args[name] && Object.keys(args[name]).length > 0) {
-                        if (typeof args[name] === 'string') {
-                            params.push(args[name])
-                        } else {
-                            params.push(_.cloneDeep(args[name]))
-                        }
+                    if (typeof args[name] !== 'undefined' && Object.keys(args[name]).length > 0) {
+                        _.merge(params, _.cloneDeep(args[name]));
                     }
                 });
 
-                console.log(...params)
+                if (isManyRelation(rel.type) === true) {
+                    return connectionFromPromisedArray(findRelatedMany(rel, obj, params, context), args, rel.modelTo);
+                } else {
+                    return findRelatedOne(rel, obj, params, context);
+                }
 
-                return connectionFromPromisedArray(findRelatedMany(rel, obj, ...params, context), args);
-            }
+                // let wrap = promisify(model[method.name](...params, ctxOptions));
 
-            return findRelatedOne(rel, obj, args, context);
+                // if (typeObj.list) {
+                //     return connectionFromPromisedArray(wrap, args, model);
+                // } else {
+                //     return wrap;
+                // }
+
+
+            }).catch((err) => {
+                throw err;
+            });
         }
     };
 }

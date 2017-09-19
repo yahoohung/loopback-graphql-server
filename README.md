@@ -1,4 +1,4 @@
-# GraphQL Server for Loopback
+# A Reply based GraphQL Server for Loopback
 
 Combine the powers of GraphQL with the backend of Loopback to automatically generate GraphQL endpoints based on Loopback Schema. 
 

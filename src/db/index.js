@@ -131,6 +131,12 @@ function findRelatedMany(rel, obj, args, context) {
         return [];
     }
 
+    _.merge(args, {
+        where: {
+            [rel.keyTo]: obj[rel.keyFrom]
+        }
+    });
+
     if (rel.modelThrough) {
         return findAllViaThrough(rel, obj, args, context);
     }
@@ -142,9 +148,9 @@ function findRelatedOne(rel, obj, args, context) {
     if (_.isArray(obj[rel.keyFrom])) {
         return Promise.resolve([]);
     }
-    args = {
-        [rel.keyTo]: obj[rel.keyFrom]
-    };
+
+    args[rel.keyTo] = obj[rel.keyFrom]
+
     return findOne(rel.modelTo, null, args, context);
 }
 
