@@ -40,6 +40,6 @@ module.exports = function(app, options) {
         }));
 
         // Subscriptions
-        //startSubscriptionServer(app, schema, options);
+        startSubscriptionServer(app, schema, options);
     }
 };

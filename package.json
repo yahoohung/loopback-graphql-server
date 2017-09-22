@@ -15,6 +15,7 @@
         "graphql-date": "^1.0.3",
         "graphql-relay": "^0.5.2",
         "graphql-server-express": "^1.1.2",
+        "graphql-subscriptions": "^0.5.1",
         "graphql-type-json": "^0.1.4",
         "lodash": "^4.17.4",
         "promisify-node": "^0.4.0",
@@ -39,7 +40,7 @@
     "name": "loopback-graphql-server",
     "optionalDependencies": {},
     "scripts": {},
-    "version": "1.1.3",
+    "version": "1.1.4",
     "repository": {
         "type": "git",
         "url": "https://github.com/yahoohung/loopback-graphql-server.git"
