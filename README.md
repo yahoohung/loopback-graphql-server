@@ -13,12 +13,6 @@ Add the loopback-graphql-server component to the `server/component-config.json`:
 "loopback-graphql-server": {
   "path": "/graphql",
   "graphiqlPath": "/graphiql",
-  "subscriptionServer": {
-    "disable": true,
-    "port": 5000,
-    "options": {},
-    "socketOptions": {}
-  },
   "modelMutationGroups": false,
   "modelQueryGroups": true
 }
@@ -27,8 +21,6 @@ Add the loopback-graphql-server component to the `server/component-config.json`:
 Requests will be posted to `path` path. (Default: `/graphql`);
 
 Graphiql is available on `graphiqlPath` path. (Default: `/graphiql`);
-
-GraphQL subscription Server can be customised by passing `subscriptionServer` configuration. More information can be found at (https://github.com/apollographql/subscriptions-transport-ws#subscriptionserver) or (https://facebook.github.io/relay/docs/subscriptions.html)
 
 ## Starter
 (https://github.com/yahoohung/loopback-graphql-starter)
@@ -58,7 +50,7 @@ GraphQL subscription Server can be customised by passing `subscriptionServer` co
 - Remote methods integration
 
 ## Subscriptions
-- `create`, `update` and `remove` events of all shared models.
+- Deprecated
 
 ## Other Features
 ### Loopback Types

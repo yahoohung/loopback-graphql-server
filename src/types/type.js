@@ -24,7 +24,6 @@ const { init, generateType, getNodeDefinitions } = require('./generateType');
 const types = {};
 const connectionTypes = {};
 
-
 const getScalar = (name) => {
 
     switch (name) {

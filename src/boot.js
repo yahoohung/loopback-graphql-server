@@ -7,8 +7,6 @@ const { printSchema } = require('graphql/utilities');
 
 const fs = require('fs');
 
-const startSubscriptionServer = require('./subscriptions');
-
 module.exports = function(app, options) {
     let models = [];
     app.models().forEach(function(element) {
@@ -39,7 +37,5 @@ module.exports = function(app, options) {
             endpointURL: path
         }));
 
-        // Subscriptions
-        startSubscriptionServer(app, schema, options);
     }
 };
