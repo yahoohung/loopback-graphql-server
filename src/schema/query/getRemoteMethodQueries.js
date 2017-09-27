@@ -58,10 +58,8 @@ module.exports = function getRemoteMethodQueries(model, options) {
                                         }
                                     }
                                 });
-
-                                //console.log(hookName, method.name, args, acceptingParams)
                                 let ctxOptions = { accessToken: context.req.accessToken }
-                                let wrap = promisify(model[method.name](...params, ctxOptions));
+                                let wrap = promisify(model[method.name](params.length > 1 ? _.merge(...params) : params[0], ctxOptions));
 
                                 if (typeObj.list) {
                                     return connectionFromPromisedArray(wrap, args, model);
