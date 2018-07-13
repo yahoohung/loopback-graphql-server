@@ -62,7 +62,13 @@ module.exports = function getRemoteMethodMutations(model) {
                                     }
                                 });
 
-                                let ctxOptions = { accessToken: context.req.accessToken }
+                                let ctxOptions;
+                                if(model.modelName == "user" && method.name == "login"){
+                                    ctxOptions = "";
+                                }else{
+                                    ctxOptions = { accessToken: context.req.accessToken }
+                                }
+
                                 let wrap = promisify(model[method.name](...params, ctxOptions));
 
                                 if (typeObj.list) {
