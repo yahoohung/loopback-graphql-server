@@ -63,7 +63,7 @@ module.exports = function getRemoteMethodMutations(model) {
                                 });
 
                                 let ctxOptions;
-                                if(model.modelName == "user" && method.name == "login"){
+                                if( (model.name === "user" || model.ctor.base.name === "user") && method.name === "login"){
                                     ctxOptions = "";
                                 }else{
                                     ctxOptions = { accessToken: context.req.accessToken }
