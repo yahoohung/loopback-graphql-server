@@ -10,7 +10,7 @@ const Type = new GraphQLObjectType({
       resolve: obj => obj.lat
     },
     lng: {
-      lng: new GraphQLNonNull(GraphQLFloat),
+      type: new GraphQLNonNull(GraphQLFloat),
       resolve: obj => obj.lng
     }
   }
