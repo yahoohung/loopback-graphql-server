@@ -1,11 +1,14 @@
 # A Reply based GraphQL Server for Loopback
 
+## Disclaimer
+This is a fork of original [loopback-graphql-server](https://github.com/yahoohung/loopback-graphql-server). It only adds a small feature to that package. Since the original package is unmaintained and the author is not accepting any new pull requests, this package was developed and uploaded here. Use at your own risk.
+
 Combine the powers of GraphQL with the backend of Loopback to automatically generate GraphQL endpoints based on Loopback Schema. 
 
 ## Installation
 
 ```sh
-npm i loopback-graphql-server -S
+npm i loopback-graphql-server-with-ids -S
 ```
 Add the loopback-graphql-server component to the `server/component-config.json`: 
 
@@ -80,4 +83,6 @@ Graphiql is available on `graphiqlPath` path. (Default: `/graphiql`);
 - [ ] File uploads
 
 ## Inspiration
+This is a fork of original [loopback-graphql-server](https://github.com/yahoohung/loopback-graphql-server). This versions adds support for querying the IDs as they appear in database by adding "_id" field in GraphQL's query. The type of the _id is String, but it can be changed by uncommenting a single [line](https://github.com/saubanbinusman/loopback-graphql-server/blob/master/src/types/generateType.js#L120) in the src/types/generateType.js. After doing this, the type of the ID will be determined based on it's type in your loopback model. Comment out Line# 119 after as it won't go well with the above modification.
+
 This repository originally started as a fork of the [loopback-graphql](https://github.com/Tallyb/loopback-graphql) project by [Tallyb](https://github.com/Tallyb) and the [loopback-graphql-relay](https://github.com/BlueEastCode/loopback-graphql-relay) by [BlueEastCode](https://github.com/BlueEastCode). I have fixed many bugs and tested on enterprise environment. This version is ready for production use. 
