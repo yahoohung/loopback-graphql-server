@@ -150,6 +150,7 @@ function findRelatedOne(rel, obj, args, context) {
     }
 
     args[rel.keyTo] = obj[rel.keyFrom]
+    if(args.id == undefined) args.id = obj[rel.keyFrom]
 
     return findOne(rel.modelTo, null, args, context);
 }
