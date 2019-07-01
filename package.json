@@ -1,7 +1,7 @@
 {
     "author": {
-        "name": "Marshall Chan",
-        "email": "yahoohung@gmail.com"
+        "name": "Sauban bin Usman",
+        "email": "saubanbinusman@yahoo.com"
     },
     "bugs": {
         "url": "https://github.com/yahoohung/loopback-graphql-server/issues"
@@ -23,9 +23,9 @@
         "underscore": "^1.9.1"
     },
     "deprecated": false,
-    "description": "Add Relay based Apollo Server or GraphQL queries on your Loopback server",
+    "description": "Add Relay based Apollo Server or GraphQL queries on your Loopback server (based on loopback-graphql-server). This package adds support for querying IDs of models as they appear in the database. You can query them by adding \"_id\" to your queries.",
     "devDependencies": {},
-    "homepage": "https://github.com/yahoohung/loopback-graphql-server#readme",
+    "homepage": "https://github.com/saubanbinusman/loopback-graphql-server#readme",
     "keywords": [
         "Loopback",
         "GraphQL",
@@ -33,16 +33,18 @@
         "Express",
         "Javascript",
         "REST",
-        "APIs"
+        "APIs",
+        "Database IDs",
+        "Uncoded IDs"
     ],
     "license": "MIT",
     "main": "src/index.js",
-    "name": "loopback-graphql-server",
+    "name": "loopback-graphql-server-with-ids",
     "optionalDependencies": {},
     "scripts": {},
-    "version": "1.1.8",
+    "version": "1.0.0",
     "repository": {
         "type": "git",
-        "url": "https://github.com/yahoohung/loopback-graphql-server.git"
+        "url": "https://github.com/saubanbinusman/loopback-graphql-server.git"
     }
 }

@@ -1,4 +1,3 @@
-
 const _ = require('lodash');
 
 const {
@@ -112,6 +111,16 @@ function generateTypeFields(def) {
           return o.id;
         }
       });
+
+      // Returns the id of the field as found in database
+      fields._id = {
+        name: "_id",
+        description: "The id of the object in database",
+        type: getType("String"),
+        // type: getType(field.meta.type),
+        resolve: o => o.id
+      }
+
       return;
     }
 
