@@ -1,3 +1,9 @@
+# A Loopback Graphql Server based GraphQL Server
+
+This is a copy of [loopback-graphql-server](https://github.com/yahoohung/loopback-graphql-server) with fixes and modifications:
+- [fix] Queries and Mutations based on rest APIs with no parameters pass authontication.
+- [feat] Select models to be included in the qraphql schema. Selected models must be pure models, i.e, no relations to any othere modls
+
 # A Reply based GraphQL Server for Loopback
 
 Combine the powers of GraphQL with the backend of Loopback to automatically generate GraphQL endpoints based on Loopback Schema. 
@@ -11,10 +17,13 @@ Add the loopback-graphql-server component to the `server/component-config.json`:
 
 ```
 "loopback-graphql-server": {
+  models:[],
+  options:{
   "path": "/graphql",
   "graphiqlPath": "/graphiql",
   "modelMutationGroups": false,
   "modelQueryGroups": true
+  }
 }
 ```
 
