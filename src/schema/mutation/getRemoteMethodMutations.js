@@ -51,25 +51,30 @@ module.exports = function getRemoteMethodMutations(model) {
                         return checkAccess({ accessToken: context.req.accessToken, model: model, method: method, id: modelId })
                             .then(() => {
                                 let params = [];
-
-                                _.forEach(acceptingParams, (param, name) => {
-                                    if (args[name] && Object.keys(args[name]).length > 0) {
-                                        if (typeof args[name] === 'string') {
-                                            params.push(args[name])
-                                        } else {
-                                            params.push(_.cloneDeep(args[name]))
-                                        }
-                                    }
-                                });
-
+                                let wrap;
                                 let ctxOptions;
                                 if(model.modelName == "user" && method.name == "login"){
                                     ctxOptions = "";
                                 }else{
-                                    ctxOptions = { accessToken: context.req.accessToken }
+                                    ctxOptions = { injectedAccessToken: { userId: context.req.accessToken.userId } };
                                 }
 
-                                let wrap = promisify(model[method.name](...params, ctxOptions));
+                                if (Object.keys(acceptingParams).length > 0) {
+                                    _.forEach(acceptingParams, (param, name) => {
+                                        if (args[name] && Object.keys(args[name]).length > 0) {
+                                            if (typeof args[name] === 'string') {
+                                                params.push(args[name])
+                                            } else {
+                                                params.push(_.cloneDeep(args[name]))
+                                            }
+                                        }
+                                    });
+    
+                                    wrap = promisify(model[method.name](params, ctxOptions));
+                                } else {
+                                    wrap = promisify(model[method.name](ctxOptions));
+                                }
+
 
                                 if (typeObj.list) {
                                     return connectionFromPromisedArray(wrap, args, model);
