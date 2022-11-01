@@ -7,11 +7,21 @@ const { printSchema } = require('graphql/utilities');
 
 const fs = require('fs');
 
-module.exports = function(app, options) {
+module.exports = function (app, settings) {
+    let options = settings.options;
     let models = [];
-    app.models().forEach(function(element) {
-        if (element.shared) models.push(element)
-    });
+
+    if (settings.models != null && settings.models != undefined && typeof settings.models == "object" && settings.models.length > 0) {
+        app.models().forEach(function (element) {
+            if (element.shared && settings.models.includes(element.definition.name) && Object.keys(element.settings.relations).length == 0) {
+                models.push(element);
+            }
+        });
+    } else {
+        app.models().forEach(function (element) {
+            if (element.shared) models.push(element)
+        });
+    }
 
     if (models.length >= 1) {
 
