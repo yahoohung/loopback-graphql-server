@@ -53,10 +53,14 @@ module.exports = function getRemoteMethodMutations(model) {
                                 let params = [];
                                 let wrap;
                                 let ctxOptions;
-                                if(model.modelName == "user" && method.name == "login"){
+                                if(model.modelName.toLowerCase() == "user" || model.modelName.toLowerCase() == "useraccount" && method.name == "login"){
                                     ctxOptions = "";
                                 }else{
-                                    ctxOptions = { injectedAccessToken: { userId: context.req.accessToken.userId } };
+                                    if(context.req.hasOwnProperty('accessToken') && context.req.accessToken != null){
+                                        ctxOptions = { injectedAccessToken: { userId: context.req.accessToken.userId } };
+                                    } else {
+                                        ctxOptions = "";
+                                    }
                                 }
 
                                 if (Object.keys(acceptingParams).length > 0) {

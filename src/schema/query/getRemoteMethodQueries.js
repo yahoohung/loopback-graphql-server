@@ -49,7 +49,9 @@ module.exports = function getRemoteMethodQueries(model, options) {
                             .then(() => {
                                 let params = [];
                                 let wrap;
-                                let ctxOptions = { injectedAccessToken: { userId: context.req.accessToken.userId } };
+                                let ctxOptions = "";
+                                if (context.req.hasOwnProperty('accessToken') && context.req.accessToken != null)
+                                    ctxOptions = { injectedAccessToken: { userId: context.req.accessToken.userId } };
 
                                 if (Object.keys(acceptingParams).length > 0) {
                                     _.forEach(acceptingParams, (param, name) => {

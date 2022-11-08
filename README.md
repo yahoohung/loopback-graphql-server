@@ -11,7 +11,7 @@ Combine the powers of GraphQL with the backend of Loopback to automatically gene
 ## Installation
 
 ```sh
-npm i loopback-graphql-server -S
+npm i letsmod-loopback-graphql -S
 ```
 Add the loopback-graphql-server component to the `server/component-config.json`: 
 
