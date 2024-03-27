@@ -39,27 +39,34 @@ module.exports = function getRemoteMethodQueries(model, options) {
                     resolve: (__, args, context, info) => {
                         let modelId = args && args.id;
                         return checkAccess({
-                                accessToken: context.req.accessToken,
-                                model: model,
-                                method: method,
-                                id: modelId,
-                                ctx: context,
-                                options: options
-                            })
+                            accessToken: context.req.accessToken,
+                            model: model,
+                            method: method,
+                            id: modelId,
+                            ctx: context,
+                            options: options
+                        })
                             .then(() => {
                                 let params = [];
+                                let wrap;
+                                let ctxOptions = "";
+                                if (context.req.hasOwnProperty('accessToken') && context.req.accessToken != null)
+                                    ctxOptions = { injectedAccessToken: { userId: context.req.accessToken.userId } };
 
-                                _.forEach(acceptingParams, (param, name) => {
-                                    if (args[name] && Object.keys(args[name]).length > 0) {
-                                        if (typeof args[name] === 'string') {
-                                            params.push(args[name])
-                                        } else {
-                                            params.push(_.cloneDeep(args[name]))
+                                if (Object.keys(acceptingParams).length > 0) {
+                                    _.forEach(acceptingParams, (param, name) => {
+                                        if (args[name] && Object.keys(args[name]).length > 0) {
+                                            if (typeof args[name] === 'string') {
+                                                params.push(args[name])
+                                            } else {
+                                                params.push(_.cloneDeep(args[name]))
+                                            }
                                         }
-                                    }
-                                });
-                                let ctxOptions = { accessToken: context.req.accessToken }
-                                let wrap = promisify(model[method.name](params.length > 1 ? _.merge(...params) : params[0], ctxOptions));
+                                    });
+                                    wrap = promisify(model[method.name](params.length > 1 ? _.merge(...params) : params[0], ctxOptions));
+                                } else {
+                                    wrap = promisify(model[method.name](ctxOptions));
+                                };
 
                                 if (typeObj.list) {
                                     return connectionFromPromisedArray(wrap, args, model);

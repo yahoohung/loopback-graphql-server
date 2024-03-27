@@ -4,7 +4,7 @@
         "email": "yahoohung@gmail.com"
     },
     "bugs": {
-        "url": "https://github.com/yahoohung/loopback-graphql-server/issues"
+        "url": "https://github.com/supervisiont/letsmod-loopback-graphql/issues"
     },
     "bundleDependencies": [],
     "dependencies": {
@@ -25,7 +25,7 @@
     "deprecated": false,
     "description": "Add Relay based Apollo Server or GraphQL queries on your Loopback server",
     "devDependencies": {},
-    "homepage": "https://github.com/yahoohung/loopback-graphql-server#readme",
+    "homepage": "https://github.com/supervisiont/letsmod-loopback-graphql#readme",
     "keywords": [
         "Loopback",
         "GraphQL",
@@ -37,12 +37,12 @@
     ],
     "license": "MIT",
     "main": "src/index.js",
-    "name": "loopback-graphql-server",
+    "name": "letsmod-loopback-graphql",
     "optionalDependencies": {},
     "scripts": {},
-    "version": "1.1.8",
+    "version": "1.2.1",
     "repository": {
         "type": "git",
-        "url": "https://github.com/yahoohung/loopback-graphql-server.git"
+        "url": "https://github.com/supervisiont/letsmod-loopback-graphql.git"
     }
 }
